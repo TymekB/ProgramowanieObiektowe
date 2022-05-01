@@ -16,6 +16,20 @@ namespace lab06
             Console.WriteLine(result + "\n");
         }
 
+        static void zad2(List<User> users)
+        {
+            Console.WriteLine("ZAD 2 - Lista nazw uzytkownikow");
+            
+            List<string> result = users.Select(user => user.Name).ToList();
+            // List<string> result = (from user in users select user.Name).ToList();
+            
+            foreach (string name in result)
+                Console.WriteLine(name);
+            
+            Console.WriteLine(result + "\n");
+
+        }
+
         static void Main(string[] args)
         {
             List<User> users = new List<User>()
@@ -26,6 +40,7 @@ namespace lab06
                 new User { Name = "A", Role = "TEACHER"}
             };
             zad1(users);
+            zad2(users);
         }
     }
 }
