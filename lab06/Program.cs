@@ -26,8 +26,7 @@ namespace lab06
             foreach (string name in result)
                 Console.WriteLine(name);
             
-            Console.WriteLine(result + "\n");
-
+            Console.WriteLine();
         }
 
         static void zad3(List<User> users)
@@ -39,6 +38,25 @@ namespace lab06
 
             foreach (User user in result)
                 Console.WriteLine(user.Name);
+
+            Console.WriteLine();
+        }
+
+        static void zad4(List<User> users)
+        {
+            Console.WriteLine("ZAD 4 - Lista dostepnych rol uzytkownikow");
+
+            // List<string> result = users
+            //     .Select(user => user.Role)
+            //     .Distinct()
+            //     .ToList();
+
+            List<string> result = (from user in users select user.Role).Distinct().ToList();
+
+            foreach (string role in result)
+                Console.WriteLine(role);
+
+            Console.WriteLine();
         }
 
         static void Main(string[] args)
@@ -53,6 +71,7 @@ namespace lab06
             zad1(users);
             zad2(users);
             zad3(users);
+            zad4(users);
         }
     }
 }
