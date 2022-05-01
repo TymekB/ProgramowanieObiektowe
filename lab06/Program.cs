@@ -82,6 +82,19 @@ namespace lab06
             Console.WriteLine();
         }
 
+        static void zad6(List<User> users)
+        {
+            Console.WriteLine("ZAD 6 - Ilosc rekordow, dla ktorych podano oceny (nie null i wiecej niz 0)");
+
+            int result = users
+                .Where(user => user.Marks != null)
+                .Count(user => user.Marks.Any());
+
+            // int result = (from user in users where user.Marks != null && user.Marks.Any() select user).Count();
+
+            Console.WriteLine(result);
+        }
+
         static void Main(string[] args)
         {
             List<User> users = new List<User>()
@@ -96,6 +109,7 @@ namespace lab06
             zad3(users);
             zad4(users);
             zad5(users);
+            zad6(users);
         }
     }
 }
