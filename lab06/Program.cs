@@ -11,18 +11,20 @@ namespace lab06
             Console.WriteLine("ZAD 1 - Ilosc rekordow w tablicy");
 
             int result = users.Count();
-            // int result = (from user in users select user).Count();
             
+            // int result = (from user in users select user).Count();
+
             Console.WriteLine(result + "\n");
         }
 
         static void zad2(List<User> users)
         {
             Console.WriteLine("ZAD 2 - Lista nazw uzytkownikow");
-            
+
             List<string> result = users.Select(user => user.Name).ToList();
-            // List<string> result = (from user in users select user.Name).ToList();
             
+            // List<string> result = (from user in users select user.Name).ToList();
+
             foreach (string name in result)
                 Console.WriteLine(name);
             
@@ -32,8 +34,9 @@ namespace lab06
         static void zad3(List<User> users)
         {
             Console.WriteLine("ZAD 3 - Posortowani uzytkownicy po nazwach");
-            
+
             List<User> result = users.OrderBy(user => user.Name).ToList();
+            
             // List<User> result = (from user in users orderby user.Name select user).ToList();
 
             foreach (User user in result)
@@ -46,16 +49,36 @@ namespace lab06
         {
             Console.WriteLine("ZAD 4 - Lista dostepnych rol uzytkownikow");
 
-            // List<string> result = users
-            //     .Select(user => user.Role)
-            //     .Distinct()
-            //     .ToList();
+            List<string> result = users
+                .Select(user => user.Role)
+                .Distinct()
+                .ToList();
 
-            List<string> result = (from user in users select user.Role).Distinct().ToList();
+            // List<string> result = (from user in users select user.Role).Distinct().ToList();
 
             foreach (string role in result)
                 Console.WriteLine(role);
 
+            Console.WriteLine();
+        }
+        
+        static void zad5(List<User> users)
+        {
+            Console.WriteLine("ZAD 5 - Pogrupowani uzytkownicy po rolach");
+            
+            IEnumerable<IGrouping<string, User>> result = users.GroupBy(user => user.Role);
+            
+            // IEnumerable<IGrouping<string, User>> result = (from user in users group user by user.Role).ToList();
+            
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.Key);
+                foreach (var blogpost in item)
+                {
+                    Console.WriteLine(blogpost.Name);
+                }
+            }
+            
             Console.WriteLine();
         }
 
@@ -72,6 +95,7 @@ namespace lab06
             zad2(users);
             zad3(users);
             zad4(users);
+            zad5(users);
         }
     }
 }
