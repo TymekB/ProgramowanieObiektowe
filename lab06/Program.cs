@@ -21,8 +21,9 @@ namespace lab06
         {
             Console.WriteLine("ZAD 2 - Lista nazw uzytkownikow");
 
-            List<string> result = users.Select(user => user.Name).ToList();
-            
+            List<string> result = users
+                .Select(user => user.Name)
+                .ToList();
             // List<string> result = (from user in users select user.Name).ToList();
 
             foreach (string name in result)
@@ -35,8 +36,9 @@ namespace lab06
         {
             Console.WriteLine("ZAD 3 - Posortowani uzytkownicy po nazwach");
 
-            List<User> result = users.OrderBy(user => user.Name).ToList();
-            
+            List<User> result = users
+                .OrderBy(user => user.Name)
+                .ToList();
             // List<User> result = (from user in users orderby user.Name select user).ToList();
 
             foreach (User user in result)
@@ -92,7 +94,27 @@ namespace lab06
 
             // int result = (from user in users where user.Marks != null && user.Marks.Any() select user).Count();
 
-            Console.WriteLine(result);
+            Console.WriteLine(result + "\n");
+        }
+
+        static void zad7(List<User> users)
+        {
+            Console.WriteLine("ZAD 7 - Suma, ilosc i srednia wszystkich ocen studentow");
+
+            IEnumerable<int[]> userMarks = users
+                .Where(user => user.Marks != null)
+                .Select(user => user.Marks);
+
+            // IEnumerable<int[]> userMarks = (from user in users where user.Marks != null select user.Marks);
+
+            int sum = userMarks.Sum(marks => marks.Sum());
+            int count = userMarks.Sum(marks => marks.Length);
+            double avg = userMarks.Average(marks => marks.Average());
+
+
+            Console.WriteLine("Sum: " + sum);
+            Console.WriteLine("Count: " + count);
+            Console.WriteLine("Average: " + avg);
         }
 
         static void Main(string[] args)
@@ -110,6 +132,7 @@ namespace lab06
             zad4(users);
             zad5(users);
             zad6(users);
+            zad7(users);
         }
     }
 }
