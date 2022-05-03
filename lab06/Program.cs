@@ -110,11 +110,25 @@ namespace lab06
             int sum = userMarks.Sum(marks => marks.Sum());
             int count = userMarks.Sum(marks => marks.Length);
             double avg = userMarks.Average(marks => marks.Average());
+        static void zad8(List<User> users)
+        {
+            Console.WriteLine("ZAD 8 - Najlepsza ocena");
+            
+            
+
+            IEnumerable<int> result = users
+                .Where(user => user.Marks != null)
+                .Select(user => user.Marks.Max());
+
+            // IEnumerable<int> result = (from user in users where user.Marks != null select user.Marks.Max());
+
+            foreach (int mark in result)
+            {
+                Console.WriteLine(mark);
+            }
 
 
-            Console.WriteLine("Sum: " + sum);
-            Console.WriteLine("Count: " + count);
-            Console.WriteLine("Average: " + avg);
+            // Console.WriteLine(result);
         }
 
         static void Main(string[] args)
@@ -133,6 +147,7 @@ namespace lab06
             zad5(users);
             zad6(users);
             zad7(users);
+            zad8(users);
         }
     }
 }
