@@ -67,20 +67,20 @@ namespace lab06
         static void zad5(List<User> users)
         {
             Console.WriteLine("ZAD 5 - Pogrupowani uzytkownicy po rolach");
-            
+
             IEnumerable<IGrouping<string, User>> result = users.GroupBy(user => user.Role);
-            
+
             // IEnumerable<IGrouping<string, User>> result = (from user in users group user by user.Role).ToList();
-            
+
             foreach (var item in result)
             {
                 Console.WriteLine(item.Key);
-                foreach (var blogpost in item)
+                foreach (var user in users)
                 {
-                    Console.WriteLine(blogpost.Name);
+                    Console.WriteLine(user.Name);
                 }
             }
-            
+
             Console.WriteLine();
         }
 
@@ -104,12 +104,35 @@ namespace lab06
             IEnumerable<int[]> userMarks = users
                 .Where(user => user.Marks != null)
                 .Select(user => user.Marks);
-
+            
             // IEnumerable<int[]> userMarks = (from user in users where user.Marks != null select user.Marks);
 
-            int sum = userMarks.Sum(marks => marks.Sum());
-            int count = userMarks.Sum(marks => marks.Length);
-            double avg = userMarks.Average(marks => marks.Average());
+            IEnumerable<int> marksSum = userMarks.Select(marks => marks.Sum());
+            IEnumerable<double> marksAverage = userMarks.Select(marks => marks.Average());
+            IEnumerable<int> marksCount = userMarks.Select(marks => marks.Length);
+
+            Console.WriteLine("Suma");
+
+            foreach (var sum in marksSum)
+            {
+                Console.WriteLine(sum);
+            }
+            
+            Console.WriteLine("Srednia");
+
+            foreach (var average in marksAverage)
+            {
+                Console.WriteLine(average);
+            }
+            
+            Console.WriteLine("Ilosc");
+            
+            foreach (var count  in marksCount)
+            {
+                Console.WriteLine(count);
+            }
+        }
+
         static void zad8(List<User> users)
         {
             Console.WriteLine("ZAD 8 - Najlepsza ocena");
