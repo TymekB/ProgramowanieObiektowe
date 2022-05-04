@@ -318,7 +318,16 @@ namespace lab06
             
             Console.WriteLine();
         }
+        static void zad18(List<User> users)
+        {
+            Console.WriteLine("ZAD 18- Najnowszy student");
 
+            // var result = users.OrderByDescending(user => user.CreatedAt).First();
+            var user = (from u in users orderby u.CreatedAt descending select u).First();
+
+            Console.WriteLine(user.Name);
+        }
+        
         static void Main(string[] args)
         {
             List<User> users = new List<User>()
@@ -367,6 +376,7 @@ namespace lab06
             zad15(users);
             zad16(users);
             zad17(users);
+            zad18(users);
         }
     }
 }
