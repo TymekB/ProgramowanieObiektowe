@@ -208,6 +208,30 @@ namespace lab06
             Console.WriteLine();
         }
 
+        static void zad12(List<User> users)
+        {
+            Console.WriteLine("ZAD 12 - Lista studentow, ktorzy posiadają najwiecej ocen");
+
+            users = users.Where(user => user.Marks != null).ToList();
+            
+            // users = (from user in users where user.Marks != null select user).ToList();
+
+            var max = users
+                .Select(user => user.Marks.Length)
+                .Max();
+            
+            // var max = (from user in users select user.Marks.Length).Max(); 
+
+            var result = users.Where(user => user.Marks.Length == max);
+  
+            foreach (var user in result)
+            {
+                Console.WriteLine(user.Name);
+            }
+
+            Console.WriteLine();
+        }
+
         }
 
         static void Main(string[] args)
@@ -230,6 +254,7 @@ namespace lab06
             zad9(users);
             zad10(users);
             zad11(users);
+            zad12(users);
         }
     }
 }
