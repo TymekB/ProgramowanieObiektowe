@@ -172,6 +172,18 @@ namespace lab06
             }
         }
 
+        static void zad10(List<User> users)
+        {
+            Console.WriteLine("Zad 10 - Najlepszy student");
+
+            // User user = users.Where(user => user.Marks != null)
+            //     .OrderByDescending(user => user.Marks.Average())
+            //     .First();
+
+            var user = (from u in users where u.Marks != null orderby u.Marks.Average() descending select u).First();
+
+            Console.WriteLine(user.Name);
+        }
         }
 
         static void Main(string[] args)
@@ -192,6 +204,7 @@ namespace lab06
             zad7(users);
             zad8(users);
             zad9(users);
+            zad10(users);
         }
     }
 }
