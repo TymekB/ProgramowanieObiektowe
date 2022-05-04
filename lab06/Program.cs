@@ -232,6 +232,22 @@ namespace lab06
             Console.WriteLine();
         }
 
+        static void zad13(List<User> users)
+        {
+            Console.WriteLine("ZAD 13 - Lista obiektow zawierajaca tylko nazwe i srednia ocene");
+            
+            var result = users
+                .Where(user => user.Marks != null)
+                .Select(user => new { user.Name, AverageMark = user.Marks.Average() });
+
+            // var result = (from user in users where user.Marks != null select new {user.Name, AverageMark = user.Marks.Average()}).ToList();
+
+            foreach (var user in result)
+            {
+                Console.WriteLine(user.Name + " " + user.AverageMark);
+            }
+        }
+
         }
 
         static void Main(string[] args)
@@ -255,6 +271,7 @@ namespace lab06
             zad10(users);
             zad11(users);
             zad12(users);
+            zad13(users);
         }
     }
 }
