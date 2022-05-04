@@ -248,6 +248,26 @@ namespace lab06
             }
         }
 
+        static void zad14(List<User> users)
+        {
+            Console.WriteLine("ZAD 14 - Studenci posortowani od najlepszego");
+
+            // var result = users.Where(user => user.Marks != null)
+            //     .OrderByDescending(user => user.Marks.Average());
+
+            var result = (from user in users
+                where user.Marks != null
+                orderby user.Marks.Average() descending
+                select user);
+
+            foreach (var user in result)
+            {
+                Console.WriteLine(user.Name);
+            }
+
+            Console.WriteLine();
+        }
+
         }
 
         static void Main(string[] args)
@@ -272,6 +292,7 @@ namespace lab06
             zad11(users);
             zad12(users);
             zad13(users);
+            zad14(users);
         }
     }
 }
