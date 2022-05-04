@@ -303,6 +303,21 @@ namespace lab06
             Console.WriteLine();
         }
         
+        static void zad17(List<User> users)
+        {
+            Console.WriteLine("ZAD 17 - Lista uzytkownikow, ktorzy nie zostali usunieci");
+
+            // var result = users.Where(user => user.RemovedAt == null);
+            var result = (from user in users where user.RemovedAt == null select user); 
+            
+
+            foreach (var user in result)
+            {
+                Console.WriteLine(user.Name);
+            }
+            
+            Console.WriteLine();
+        }
 
         static void Main(string[] args)
         {
@@ -351,6 +366,7 @@ namespace lab06
             zad14(users);
             zad15(users);
             zad16(users);
+            zad17(users);
         }
     }
 }
