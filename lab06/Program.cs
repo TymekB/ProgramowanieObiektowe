@@ -184,6 +184,30 @@ namespace lab06
 
             Console.WriteLine(user.Name);
         }
+        static void zad11(List<User> users)
+        {
+            Console.WriteLine("ZAD 11 - Lista studentow, ktorzy posiadają najmniej ocen");
+            
+            // users = (from user in users where user.Marks != null select user).ToList();
+
+            users = users.Where(user => user.Marks != null).ToList();
+            
+            var min = users
+                .Select(user => user.Marks.Length)
+                .Min();
+            
+            // int min = (from user in users select user.Marks.Length).Min(); 
+
+            var result = users.Where(user => user.Marks.Length == min);
+
+            foreach (var user in result)
+            {
+                Console.WriteLine(user.Name);
+            }
+
+            Console.WriteLine();
+        }
+
         }
 
         static void Main(string[] args)
@@ -205,6 +229,7 @@ namespace lab06
             zad8(users);
             zad9(users);
             zad10(users);
+            zad11(users);
         }
     }
 }
