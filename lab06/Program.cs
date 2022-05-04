@@ -72,10 +72,10 @@ namespace lab06
 
             // IEnumerable<IGrouping<string, User>> result = (from user in users group user by user.Role).ToList();
 
-            foreach (var item in result)
+            foreach (var group in result)
             {
-                Console.WriteLine(item.Key);
-                foreach (var user in users)
+                Console.WriteLine(group.Key);
+                foreach (var user in group)
                 {
                     Console.WriteLine(user.Name);
                 }
