@@ -97,6 +97,7 @@ namespace lab06
             Console.WriteLine(result + "\n");
         }
 
+        // TODO: correct, use array join
         static void zad7(List<User> users)
         {
             Console.WriteLine("ZAD 7 - Suma, ilosc i srednia wszystkich ocen studentow");
@@ -124,13 +125,15 @@ namespace lab06
             {
                 Console.WriteLine(average);
             }
-            
+
             Console.WriteLine("Ilosc");
-            
-            foreach (var count  in marksCount)
+
+            foreach (var count in marksCount)
             {
                 Console.WriteLine(count);
             }
+
+            Console.WriteLine("");
         }
 
         static void zad8(List<User> users)
@@ -150,8 +153,25 @@ namespace lab06
                 Console.WriteLine(mark);
             }
 
+            Console.WriteLine();
+        }
 
-            // Console.WriteLine(result);
+        static void zad9(List<User> users)
+        {
+            Console.WriteLine("ZAD 9 - Najgorsza ocena");
+
+            IEnumerable<int> result = users
+                .Where(user => user.Marks != null)
+                .Select(user => user.Marks.Min());
+
+            // IEnumerable<int> result = (from user in users where user.Marks != null select user.Marks.Max());
+
+            foreach (int mark in result)
+            {
+                Console.WriteLine(mark);
+            }
+        }
+
         }
 
         static void Main(string[] args)
@@ -171,6 +191,7 @@ namespace lab06
             zad6(users);
             zad7(users);
             zad8(users);
+            zad9(users);
         }
     }
 }
