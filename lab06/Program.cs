@@ -282,16 +282,59 @@ namespace lab06
 
             Console.WriteLine(result);
         }
+        
+        static void zad16(List<User> users)
+        {
+            Console.WriteLine("ZAD 16 - Lista uzytkownikow pogrupowanych po miesiacach daty utworzenia");
+
+            var result = users.AsEnumerable().GroupBy(user => user.CreatedAt);
+            // var result = (from user in users group user by user.CreatedAt);
+            
+
+            foreach (var group in result)
+            {
+                Console.WriteLine(group.Key);
+                foreach (var user in group)
+                {
+                    Console.WriteLine(user.Name);
+                }
+            }
+            
+            Console.WriteLine();
+        }
+        
 
         static void Main(string[] args)
         {
             List<User> users = new List<User>()
             {
-                new User { Name = "A", Role = "STUDENT", Marks = new int[]{ 5,1,4 }},
-                new User { Name = "B", Role = "STUDENT", Marks = new int[]{ 0,1,4 }},
-                new User { Name = "C", Role = "ADMIN"},
-                new User { Name = "D", Role = "TEACHER"}
+                new()
+                {
+                    Name = "A", Role = "STUDENT", 
+                    Marks = new int[] { 5, 1 }, 
+                    CreatedAt = new DateTime(2022, 5, 10)
+                },
+                new()
+                {
+                    Name = "B", Role = "STUDENT", 
+                    Marks = new int[] { 1, 3 }, 
+                    CreatedAt = new DateTime(2022, 5, 4)
+                },
+                new()
+                {
+                    Name = "C", 
+                    Role = "ADMIN", 
+                    Marks = new int[] { 4, 2 }, 
+                    CreatedAt = new DateTime(2022, 5, 3)
+                },
+                new()
+                {
+                    Name = "D", 
+                    Role = "TEACHER", 
+                    CreatedAt = new DateTime(2022, 6, 4)
+                }
             };
+
             zad1(users);
             zad2(users);
             zad3(users);
@@ -307,6 +350,7 @@ namespace lab06
             zad13(users);
             zad14(users);
             zad15(users);
+            zad16(users);
         }
     }
 }
