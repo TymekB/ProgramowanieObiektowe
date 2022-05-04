@@ -268,6 +268,19 @@ namespace lab06
             Console.WriteLine();
         }
 
+        static void zad15(List<User> users)
+        {
+            Console.WriteLine("ZAD 15 - Srednia ocena wszystkich studentow");
+
+            var result = users
+                .Where(user => user.Marks != null)
+                .Select(user => user.Marks.Average())
+                .Average();
+
+            // var result = (from user in users where user.Marks != null orderby user.Name select user.Marks.Average())
+            //     .Average();
+
+            Console.WriteLine(result);
         }
 
         static void Main(string[] args)
@@ -293,6 +306,7 @@ namespace lab06
             zad12(users);
             zad13(users);
             zad14(users);
+            zad15(users);
         }
     }
 }
